@@ -4,25 +4,39 @@ import Persons from '../components/Persons/Person';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      {
-        id:'1',
-        name: 'Max',
-        age: 28
-      }, {
-        id:'2',
-        name: 'Manu',
-        age: 29
-      }, {
-        id:'3',
-        name: 'Stephanie',
-        age: 26
-      }
-    ],
-    otherState: 'some other value',
-    showPersons:false
+  constructor(props){
+    super(props);
+   console.log("app.js inside constructur",props);
+    this.state = {
+      persons: [
+        {
+          id: '1',
+          name: 'Max',
+          age: 28
+        }, {
+          id: '2',
+          name: 'Manu',
+          age: 29
+        }, {
+          id: '3',
+          name: 'Stephanie',
+          age: 26
+        }
+      ],
+      otherState: 'some other value',
+      showPersons: false
+    }
   }
+componentWillMount(){
+  console.log("app.js inside componentWillMount");
+  
+}
+componentDidMount(){
+  console.log("app.js inside componentDidMount ");
+
+}
+
+  
 
   switchNameHandler = (newName) => {
     // console.log('Was clicked!'); DON'T DO THIS: this.state.persons[0].name =
@@ -74,7 +88,8 @@ class App extends Component {
   }
 
   render() {
-
+    console.log("app inside render");
+    
   let persons = null;
 
   if(this.state.showPersons){
@@ -94,6 +109,7 @@ class App extends Component {
 
   return <div className={classes.App}>
       <Cockpit
+      appTitle={this.props.title}
       showPersons={this.state.showPersons}
       persons={this.state.persons}
       clicked={this.togglePersonHandler}
